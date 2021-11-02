@@ -101,6 +101,9 @@ export default function DrawerView({
       ...DrawerActions.openDrawer(),
       target: state.key,
     });
+    navigation.emit({
+      type: 'drawerOpen',
+    });
   }, [navigation, state.key]);
 
   const handleDrawerClose = React.useCallback(() => {
@@ -108,7 +111,22 @@ export default function DrawerView({
       ...DrawerActions.closeDrawer(),
       target: state.key,
     });
+    navigation.emit({
+      type: 'drawerClose',
+    });
   }, [navigation, state.key]);
+
+  const handleDrawerGestureStart = React.useCallback(() => {
+    navigation.emit({
+      type: 'drawerGestureStart',
+    });
+  }, [navigation]);
+
+  const handleDrawerGestureEnd = React.useCallback(() => {
+    navigation.emit({
+      type: 'drawerGestureEnd',
+    });
+  }, [navigation]);
 
   React.useEffect(() => {
     if (!isDrawerOpen || drawerType === 'permanent') {
@@ -238,6 +256,8 @@ export default function DrawerView({
               swipeEnabled={swipeEnabled}
               onOpen={handleDrawerOpen}
               onClose={handleDrawerClose}
+              onGestureStart={handleDrawerGestureStart}
+              onGestureEnd={handleDrawerGestureEnd}
               gestureHandlerProps={gestureHandlerProps}
               drawerType={drawerType}
               drawerPosition={drawerPosition}

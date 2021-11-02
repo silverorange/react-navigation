@@ -295,6 +295,14 @@ export type DrawerNavigationEventMap = {
    * Event which fires when the drawer closes.
    */
   drawerClose: { data: undefined };
+  /**
+   * Event which fires when the drawer gesture (dragging) starts.
+   */
+  drawerGestureStart: { data: undefined };
+  /**
+   * Event which fires when the drawer gesture (dragging) ends.
+   */
+  drawerGestureEnd: { data: undefined };
 };
 
 export type DrawerNavigationHelpers = NavigationHelpers<

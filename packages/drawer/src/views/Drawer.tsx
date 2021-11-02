@@ -81,6 +81,8 @@ type Props = {
   open: boolean;
   onOpen: () => void;
   onClose: () => void;
+  onGestureStart: () => void;
+  onGestureEnd: () => void;
   gestureEnabled: boolean;
   swipeEnabled: boolean;
   drawerPosition: 'left' | 'right';
@@ -399,8 +401,10 @@ export default class DrawerView extends React.Component<Props> {
           }
 
           this.toggleStatusBar(true);
+          this.props.onGestureStart();
         } else {
           this.toggleStatusBar(this.currentOpenValue);
+          this.props.onGestureEnd();
         }
       })
     ),
